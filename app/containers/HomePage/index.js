@@ -16,7 +16,7 @@ import messages from './messages';
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
+      <h1 className="form-page__form-wrapper">
         <FormattedMessage {...messages.header} />
       </h1>
     );
