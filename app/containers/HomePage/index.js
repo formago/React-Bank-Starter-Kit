@@ -8,6 +8,7 @@
  * reloading is not a necessity for you then you can refactor it and remove
  * the linting exception.
  */
+
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'antd';
@@ -17,11 +18,12 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <div>
-        <h1>
+        <h1 className="form-page__form-wrapper">
           <FormattedMessage {...messages.header} />
         </h1>
         <Button href="/AntD">Go to Ant Design Page</Button>
       </div>
+
     );
   }
 }
