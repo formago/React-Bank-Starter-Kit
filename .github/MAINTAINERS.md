@@ -1,12 +1,7 @@
 # Maintainers
- - mxstbr  		
- - oliverturner		
- - justingreenberg		
- - gihrig		
- - sedubois		
- - chaintng		
- - samit4me		
- - amilajack		
- - Dattaya
- - jwinn
- - KarandikarMihir
+ - markayby  		
+ - alexeyburlo		
+ - artl		
+ - formago		
+ - dimaby		
+ 
