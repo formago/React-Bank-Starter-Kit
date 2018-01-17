@@ -11,6 +11,7 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import messages from './messages';
 
@@ -22,6 +23,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <FormattedMessage {...messages.header} />
         </h1>
         <Button href="/AntD">Go to Ant Design Page</Button>
+        <Link to="/AntD">Go to Ant Design Page</Link>
       </div>
 
     );
