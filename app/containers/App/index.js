@@ -16,6 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
+import TablePage from 'containers/TablePage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/Antd" component={AntDPage} />
+        <Route path="/Grid" component={TablePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

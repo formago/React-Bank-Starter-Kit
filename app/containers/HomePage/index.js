@@ -23,6 +23,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <FormattedMessage {...messages.header} />
         </h1>
         <Button href="/AntD">Go to Ant Design Page</Button>
+        <Button href="/Grid">Go to Grid Page</Button>
         <Link to="/AntD">Go to Ant Design Page</Link>
       </div>
 
