@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Table, Icon, Switch, Radio, Form, Divider } from 'antd';
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
 
 const columns = [
@@ -167,15 +169,15 @@ export default class Demo extends React.Component {   // eslint-disable-line
               />
             </FormItem>
             <FormItem label="Size">
-              <Radio.Group
+              <RadioGroup
                 size="default"
                 value={state.size}
                 onChange={this.handleSizeChange}
               >
-                <Radio.Button value="default">Default</Radio.Button>
-                <Radio.Button value="middle">Middle</Radio.Button>
-                <Radio.Button value="small">Small</Radio.Button>
-              </Radio.Group>
+                <RadioButton value="default">Default</RadioButton>
+                <RadioButton value="middle">Middle</RadioButton>
+                <RadioButton value="small">Small</RadioButton>
+              </RadioGroup>
             </FormItem>
           </Form>
         </div>
