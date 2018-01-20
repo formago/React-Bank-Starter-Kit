@@ -13,19 +13,17 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import HomePage from 'containers/HomePage/Loadable';
-import AntDPage from 'containers/AntDPage/Loadable';
-import TablePage from 'containers/TablePage/Loadable';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Cabinet from 'containers/Cabinet/Loadable';
 
 export default function App() {
   return (
     <div>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/Antd" component={AntDPage} />
-        <Route path="/Grid" component={TablePage} />
+        <Route path="/Cabinet" component={Cabinet} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
