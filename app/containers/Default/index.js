@@ -33,7 +33,7 @@ export default class Default extends React.PureComponent {
           </Menu>
         </Header>
         <Content style={{ padding: '50px' }}>
-          <div style={{ background: '#fff', padding: 30, maxWidth: 350, margin: 'auto' }}>
+          <div>
             <Switch>
               <Route exact path="/" component={LoginPage} />
             </Switch>

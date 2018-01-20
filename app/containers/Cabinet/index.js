@@ -69,7 +69,7 @@ export default class Cabinet extends React.PureComponent {
               <Link to="/" style={{ marginLeft: 20 }}>Logout</Link>
             </div>
           </Header>
-          <Content>
+          <Content style={{ margin: 30, padding: 15, border: '1px solid lightgray', borderRadius: 4 }}>
             <Switch>
               <Route exact path="/Cabinet" component={Home} />
               <Route path="/Cabinet/Documents" component={Documents} />
