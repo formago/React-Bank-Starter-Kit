@@ -16,7 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
-import TablePage from 'containers/TablePage';
+import TablePage from 'containers/TablePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
