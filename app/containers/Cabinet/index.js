@@ -10,6 +10,8 @@ import TablePage from 'containers/TablePage/Loadable';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+const MenuItem = Menu.Item;
+
 
 export default class Cabinet extends React.PureComponent {
   state = {
@@ -30,33 +32,33 @@ export default class Cabinet extends React.PureComponent {
         >
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1">
+            <MenuItem key="1">
               <Icon type="home" />
               <span>Home</span>
               <Link to="/Cabinet/"></Link>
-            </Menu.Item>
-            <Menu.Item key="2">
+            </MenuItem>
+            <MenuItem key="2">
               <Icon type="file" />
               <span>Documents</span>
               <Link to="/Cabinet/Documents"></Link>
-            </Menu.Item>
-            <Menu.Item key="3">
+            </MenuItem>
+            <MenuItem key="3">
               <Icon type="file-text" />
               <span>Statements</span>
               <Link to="/Cabinet/Statements"></Link>
-            </Menu.Item>
+            </MenuItem>
             <SubMenu
               key="sub1"
               title={<span><Icon type="smile-o" /><span>Testing</span></span>}
             >
-              <Menu.Item key="4">
+              <MenuItem key="4">
                 <span>Ant D</span>
                 <Link to="/Cabinet/AntDPage"></Link>
-              </Menu.Item>
-              <Menu.Item key="5">
+              </MenuItem>
+              <MenuItem key="5">
                 <span>Table</span>
                 <Link to="/Cabinet/TablePage"></Link>
-              </Menu.Item>
+              </MenuItem>
             </SubMenu>
           </Menu>
         </Sider>
