@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NormalLoginForm from '../../components/LoginForm';
 
 export default class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
-        <Link to="/Cabinet/">Login to Cabinet</Link>
+        <NormalLoginForm />
       </div>
     );
   }

@@ -64,7 +64,10 @@ export default class Cabinet extends React.PureComponent {
         </Sider>
         <Layout>
           <Header style={{ color: 'white' }}>
-            <span>header</span>
+            <div style={{ textAlign: 'right' }}>
+              <span>Username</span>
+              <Link to="/" style={{ marginLeft: 20 }}>Logout</Link>
+            </div>
           </Header>
           <Content>
             <Switch>
