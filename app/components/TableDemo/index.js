@@ -60,7 +60,7 @@ const showHeader = true;
 const footer = () => 'Here is footer';
 const scroll = { y: 240 };
 
-export default class Demo extends React.Component {   // eslint-disable-line
+export default class TableDemo extends React.Component {   // eslint-disable-line
   state = {
     bordered: false,
     loading: false,
