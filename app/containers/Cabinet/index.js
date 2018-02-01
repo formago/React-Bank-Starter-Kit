@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Link, Switch, Route } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
-import Home from 'containers/Home/Loadable';
-import Documents from 'containers/Documents/Loadable';
-import Statements from 'containers/Statements/Loadable';
+import Home from 'containers/Cabinet/Home/Loadable';
+import Documents from 'containers/Cabinet/Documents/Loadable';
+import Statements from 'containers/Cabinet/Statements/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
-import TablePage from 'containers/TablePage/Loadable';
+import TablePage from 'containers/Cabinet/TablePage/Loadable';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import LoginPage from 'containers/LoginPage/Loadable';
+import LoginPage from 'containers/Default/LoginPage/Loadable';
 
 const { Header, Content, Footer } = Layout;
 const MenuItem = Menu.Item;
