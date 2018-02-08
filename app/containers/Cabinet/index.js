@@ -1,16 +1,17 @@
 import React from 'react';
 
 import { Link, Switch, Route } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout } from 'antd';
 import Home from 'containers/Cabinet/Home/Loadable';
 import Documents from 'containers/Cabinet/Documents/Loadable';
 import Statements from 'containers/Cabinet/Statements/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
 import TablePage from 'containers/Cabinet/TablePage/Loadable';
+import CabinetMenu from 'components/Menu';
 
 const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
-const MenuItem = Menu.Item;
+// const SubMenu = Menu.SubMenu;
+// const MenuItem = Menu.Item;
 
 
 export default class Cabinet extends React.PureComponent {
@@ -31,36 +32,7 @@ export default class Cabinet extends React.PureComponent {
           onCollapse={this.onCollapse}
         >
           <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <MenuItem key="1">
-              <Icon type="home" />
-              <span>Home</span>
-              <Link to="/Cabinet/"></Link>
-            </MenuItem>
-            <MenuItem key="2">
-              <Icon type="file" />
-              <span>Documents</span>
-              <Link to="/Cabinet/Documents"></Link>
-            </MenuItem>
-            <MenuItem key="3">
-              <Icon type="file-text" />
-              <span>Statements</span>
-              <Link to="/Cabinet/Statements"></Link>
-            </MenuItem>
-            <SubMenu
-              key="sub1"
-              title={<span><Icon type="smile-o" /><span>Testing</span></span>}
-            >
-              <MenuItem key="4">
-                <span>Ant D</span>
-                <Link to="/Cabinet/AntDPage"></Link>
-              </MenuItem>
-              <MenuItem key="5">
-                <span>Table</span>
-                <Link to="/Cabinet/TablePage"></Link>
-              </MenuItem>
-            </SubMenu>
-          </Menu>
+          <CabinetMenu />
         </Sider>
         <Layout>
           <Header style={{ color: 'white' }}>
