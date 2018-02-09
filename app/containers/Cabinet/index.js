@@ -10,9 +10,6 @@ import TablePage from 'containers/Cabinet/TablePage/Loadable';
 import CabinetMenu from 'components/Menu';
 
 const { Header, Content, Footer, Sider } = Layout;
-// const SubMenu = Menu.SubMenu;
-// const MenuItem = Menu.Item;
-
 
 export default class Cabinet extends React.PureComponent {
   state = {
