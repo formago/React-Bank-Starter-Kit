@@ -1,64 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
+import injectSaga from 'utils/injectSaga';
+import { createStructuredSelector } from 'reselect';
+import injectReducer from 'utils/injectReducer';
+import { connect } from 'react-redux';
+import { getMenuItems } from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import { makeSelectSource } from './selectors';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
-const data = [];
-data.push(
-  {
-    menuId: 1,
-    parentMenuId: 0,
-    menuName: 'home',
-    url: '/Cabinet/',
-    icon: 'home',
-    childList: [],
-  },
-  {
-    menuId: 2,
-    parentMenuId: 0,
-    menuName: 'Documents',
-    url: '/Cabinet/Documents',
-    icon: 'file',
-    childList: [],
-  },
-  {
-    menuId: 3,
-    parentMenuId: 0,
-    menuName: 'Statements',
-    url: '/Cabinet/Statements',
-    icon: 'file-text',
-    childList: [],
-  },
-  {
-    menuId: 4,
-    parentMenuId: 0,
-    menuName: 'Testing',
-    url: '',
-    icon: 'file',
-    childList: [
-      {
-        menuId: 5,
-        parentMenuId: 0,
-        menuName: 'Ant D',
-        url: '/Cabinet/AntDPage',
-        icon: 'file',
-        childList: [],
-      },
-      {
-        menuId: 6,
-        parentMenuId: 0,
-        menuName: 'Table',
-        url: '/Cabinet/TablePage',
-        icon: 'file',
-        childList: [],
-      },
-    ],
-  },
-);
+class CabinetMenu extends React.Component {
 
-export default class CabinetMenu extends React.Component {
+  componentDidMount() {
+    this.getMenu();
+  }
+
+  getMenu() {
+    this.props.dispatch(getMenuItems()); // don't do it if we load menu before, need check!
+  }
 
   call = function (it) {
     if (it.childList.length === 0) {
@@ -73,16 +38,40 @@ export default class CabinetMenu extends React.Component {
     </SubMenu>);
   }
 
-  menuItems = data.map((it) => this.call(it));
+  // don't work because component dont link with source and dont update himself
+  // menuItems = this.props.source.map((it) => this.call(it));
 
   render() {
-    const cc = (
+    return (
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-        {this.menuItems}
+        {/* {this.menuItems} */}
+        {this.props.source.map((it) => this.call(it))}
       </Menu>
     );
-
-    return cc;
   }
 }
 
+CabinetMenu.propTypes = {
+  source: PropTypes.object,
+  dispatch: React.PropTypes.func,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  source: makeSelectSource(),
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({ key: 'cabinetMenu', reducer });
+const withSaga = injectSaga({ key: 'cabinetMenu', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(CabinetMenu);
