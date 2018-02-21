@@ -55,6 +55,17 @@ const service = {
         ],
       },
     );
+
+    // use for API (dont delete)
+    // fetch('/rsAppsArm/auth/usermenu', {
+    //   method: 'POST',
+    //   data: {
+    //     name: self.refs.name,
+    //     job: self.refs.job,
+    //   },
+    // })
+    // .then((response) => response.json());
+
     return data;
   },
 

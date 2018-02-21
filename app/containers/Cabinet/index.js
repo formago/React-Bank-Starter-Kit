@@ -7,7 +7,7 @@ import Documents from 'containers/Cabinet/Documents/Loadable';
 import Statements from 'containers/Cabinet/Statements/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
 import TablePage from 'containers/Cabinet/TablePage/Loadable';
-import CabinetMenu from 'components/Menu';
+import CabinetMenu from 'containers/Menu';
 
 const { Header, Content, Footer, Sider } = Layout;
 

@@ -1,5 +1,5 @@
 import { take, call, put, fork } from 'redux-saga/effects';
-import service from '../../services/MenuService';
+import service from './service';
 
 import {
   REQUEST,
