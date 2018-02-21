@@ -22,7 +22,7 @@ class CabinetMenu extends React.Component {
   }
 
   getMenu() {
-    this.props.dispatch(getMenuItems()); // don't do it if we load menu before, need check!
+    this.props.dispatch(getMenuItems()); // don't do it if we have loaded menu before, need check!
   }
 
   call = function (it) {
