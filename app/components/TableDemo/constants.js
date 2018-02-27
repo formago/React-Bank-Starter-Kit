@@ -1,0 +1,4 @@
+export const REQUEST = 'REQUEST';
+export const SENDING_REQUEST = 'SENDING_REQUEST';
+export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
+export const REQUEST_ERROR = 'REQUEST_ERROR';

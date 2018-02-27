@@ -2,6 +2,22 @@
 
 import React from 'react';
 import { Table, Icon, Switch, Radio, Form, Divider } from 'antd';
+
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { Link } from 'react-router-dom';
+
+import injectSaga from 'utils/injectSaga';
+
+import { createStructuredSelector } from 'reselect';
+
+import injectReducer from 'utils/injectReducer';
+import { connect } from 'react-redux';
+import { getGridItems } from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import { makeSource } from './selectors';
+
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
@@ -42,25 +58,13 @@ const columns = [
     ),
   },
 ];
-
-const data = [];
-for (let i = 1; i <= 10; i++) {
-  data.push({
-    key: i,
-    name: 'John Brown',
-    age: `${i}2`,
-    address: `New York No. ${i} Lake Park`,
-    description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
-  });
-}
-
 const expandedRowRender = (record) => <p>{record.description}</p>;
 const title = () => 'Here is title';
 const showHeader = true;
 const footer = () => 'Here is footer';
 const scroll = { y: 240 };
 
-export default class TableDemo extends React.Component {   // eslint-disable-line
+class TableDemo extends React.Component {   // eslint-disable-line
   state = {
     bordered: false,
     loading: false,
@@ -107,6 +111,14 @@ export default class TableDemo extends React.Component {   // eslint-disable-lin
   handleScollChange = (enable) => {
     this.setState({ scroll: enable ? scroll : undefined });
   };
+
+  componentDidMount() {
+    this.getGridData();
+  }
+
+  getGridData(){
+    this.props.dispatch(getGridItems()); // don't do it if we have loaded menu before, need check!
+  }
 
   render() {
     const state = this.state;
@@ -181,8 +193,34 @@ export default class TableDemo extends React.Component {   // eslint-disable-lin
             </FormItem>
           </Form>
         </div>
-        <Table {...this.state} columns={columns} dataSource={data} />
+        <Table {...this.state} columns={columns} dataSource={this.props.gridSource} />
       </div>
     );
   }
 }
+
+
+TableDemo.propTypes = {
+  gridSource: PropTypes.array,
+  dispatch: React.PropTypes.func,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  gridSource: makeSource(),
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({ key: 'grid', reducer });
+const withSaga = injectSaga({ key: 'grid', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(TableDemo);

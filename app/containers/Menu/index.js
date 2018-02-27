@@ -52,7 +52,7 @@ class CabinetMenu extends React.Component {
 }
 
 CabinetMenu.propTypes = {
-  source: PropTypes.object,
+  source: PropTypes.array,
   dispatch: React.PropTypes.func,
 };
 
