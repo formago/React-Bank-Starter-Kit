@@ -51,8 +51,9 @@ class CabinetMenu extends React.Component {
   }
 }
 
+// https://github.com/reactjs/react-redux/issues/445
 CabinetMenu.propTypes = {
-  source: PropTypes.array,
+  source: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   dispatch: PropTypes.func,
 };
 

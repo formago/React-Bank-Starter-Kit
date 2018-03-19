@@ -201,7 +201,7 @@ class TableDemo extends React.Component {   // eslint-disable-line
 
 
 TableDemo.propTypes = {
-  gridSource: PropTypes.array,
+  gridSource: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   dispatch: PropTypes.func,
 };
 
