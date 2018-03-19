@@ -80,7 +80,6 @@ class TableDemo extends React.Component {   // eslint-disable-line
 
   handleToggle = (prop) => (enable) => {
     this.setState({ [prop]: enable });
-    //throw new Error('Error from Grid');
   };
 
   handleSizeChange = (e) => {

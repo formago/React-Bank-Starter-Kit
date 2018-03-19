@@ -8,6 +8,7 @@ import Statements from 'containers/Cabinet/Statements/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
 import TablePage from 'containers/Cabinet/TablePage/Loadable';
 import CabinetMenu from 'containers/Menu';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -38,15 +39,17 @@ export default class Cabinet extends React.PureComponent {
               <Link to="/" style={{ marginLeft: 20 }}>Logout</Link>
             </div>
           </Header>
-          <Content style={{ margin: 30, padding: 15, border: '1px solid lightgray', borderRadius: 4 }}>
-            <Switch>
-              <Route exact path="/Cabinet" component={Home} />
-              <Route path="/Cabinet/Documents" component={Documents} />
-              <Route path="/Cabinet/Statements" component={Statements} />
-              <Route path="/Cabinet/AntDPage" component={AntDPage} />
-              <Route path="/Cabinet/TablePage" component={TablePage} />
-            </Switch>
-          </Content>
+          <ErrorBoundary>
+            <Content style={{ margin: 30, padding: 15, border: '1px solid lightgray', borderRadius: 4 }}>
+              <Switch>
+                <Route exact path="/Cabinet" component={Home} />
+                <Route path="/Cabinet/Documents" component={Documents} />
+                <Route path="/Cabinet/Statements" component={Statements} />
+                <Route path="/Cabinet/AntDPage" component={AntDPage} />
+                <Route path="/Cabinet/TablePage" component={TablePage} />
+              </Switch>
+            </Content>
+          </ErrorBoundary>
           <Footer>footer</Footer>
         </Layout>
       </Layout>
