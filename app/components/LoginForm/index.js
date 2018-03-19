@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 
@@ -54,7 +55,7 @@ class NormalLoginForm extends React.Component {
 }
 
 NormalLoginForm.propTypes = {
-  form: 'any',
+  form: PropTypes.object,
 };
 
 export default Form.create()(NormalLoginForm);
