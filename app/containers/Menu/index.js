@@ -7,17 +7,24 @@ import injectSaga from 'utils/injectSaga';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import { connect } from 'react-redux';
-import { getMenuItems } from './actions';
+import { getMenuItems, setCurrentMenuItem } from './actions';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectSource } from './selectors';
+import { makeSelectSource, makeMenuId } from './selectors';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 class CabinetMenu extends React.Component {
 
-  componentDidMount() {
+
+  constructor(props) {
+    console.log("constructor");
+    super(props)
+    this.menuOnSelect = this.menuOnSelect.bind(this)  
+  }
+
+  componentWillMount() {
     this.getMenu();
   }
 
@@ -25,15 +32,19 @@ class CabinetMenu extends React.Component {
     this.props.dispatch(getMenuItems()); // don't do it if we have loaded menu before, need check!
   }
 
+  menuOnSelect(e) {
+    this.props.dispatch(setCurrentMenuItem(e.key));
+  }
+
   call = function (it) {
-    if (it.childList.length === 0) {
+    if (it.childList && it.childList.length === 0) {
       return (<MenuItem key={it.menuId}>
-        <Icon type={it.icon} />
+        <Icon type="user" />
         <span>{it.menuName}</span>
-        <Link to={it.url}></Link>
+        <Link to={"/Cabinet/" + it.url}> </Link>
       </MenuItem>);
     }
-    return (<SubMenu key={it.menuId} title={<span><Icon type={it.icon} /><span>{it.menuName}</span></span>}>
+    return (<SubMenu key={it.menuId} title={<span><Icon type="link" /><span>{it.menuName}</span></span>}>
       {it.childList.map((subit) => (this.call(subit)))}
     </SubMenu>);
   }
@@ -42,8 +53,9 @@ class CabinetMenu extends React.Component {
   // menuItems = this.props.source.map((it) => this.call(it));
 
   render() {
+    console.log("render");
     return (
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+      <Menu theme="dark" onSelect={this.menuOnSelect} selectedKeys={[this.props.menuId]} defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}
         {this.props.source.map((it) => this.call(it))}
       </Menu>
@@ -51,13 +63,14 @@ class CabinetMenu extends React.Component {
   }
 }
 
-// https://github.com/reactjs/react-redux/issues/445
 CabinetMenu.propTypes = {
-  source: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  dispatch: PropTypes.func,
+  menuId: PropTypes.string,
+  source: PropTypes.array,
+  dispatch: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
+  console.log("mDispatchToProps");
   return {
     dispatch,
   };
@@ -65,6 +78,8 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   source: makeSelectSource(),
+  menuId: makeMenuId(),
+
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -3,7 +3,9 @@ import {
   SENDING_REQUEST,
   REQUEST_SUCCESS,
   REQUEST_ERROR,
+  SET_CURRENT_MENU_ITEM
 } from './constants';
+
 
 export function getMenuItems() {
   return { type: REQUEST };
@@ -19,4 +21,8 @@ export function requestSuccess(data) {
 
 export function requestError(error) {
   return { type: REQUEST_ERROR, error };
+}
+
+export function setCurrentMenuItem(menuId) {
+  return { type: SET_CURRENT_MENU_ITEM, menuId };
 }
