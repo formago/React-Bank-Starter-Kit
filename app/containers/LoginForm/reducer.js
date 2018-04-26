@@ -9,8 +9,10 @@ import {
   SET_AUTH,
   SENDING_REQUEST,
   REQUEST_ERROR,
-  CLEAR_ERROR
+  CLEAR_ERROR,
+  TEST_ENTRY
 } from "./constants";
+
 import auth from "./auth";
 
 // The initial application state
