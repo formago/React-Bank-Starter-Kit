@@ -65,8 +65,8 @@ class CabinetMenu extends React.Component {
 
 CabinetMenu.propTypes = {
   menuId: PropTypes.string,
-  source: PropTypes.array,
-  dispatch: React.PropTypes.func,
+  source: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  dispatch: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -78,8 +78,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   source: makeSelectSource(),
-  menuId: makeMenuId(),
-
+  menuId: makeMenuId()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -15,7 +15,7 @@ import { userAuthorized } from "./../App/actions";
 import {
   SENDING_REQUEST,
   LOGIN_REQUEST,
-  TEST_REQUEST,
+  TEST_ENTRY,
   REGISTER_REQUEST,
   SET_AUTH,
   LOGOUT,
@@ -137,7 +137,7 @@ export function* testLoginFlow() {
   // Basically here we say "this saga is always listening for actions"
   while (true) {
     // And we're listening for `LOGIN_REQUEST` actions and destructuring its payload
-    const request = yield take(TEST_REQUEST);
+    const request = yield take(TEST_ENTRY);
 
     const username = "user1";
     const password = "123123";

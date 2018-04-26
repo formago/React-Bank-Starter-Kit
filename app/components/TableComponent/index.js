@@ -150,7 +150,7 @@ class TableComponent extends React.Component {   // eslint-disable-line
 TableComponent.propTypes = {
   columns : PropTypes.array,
   gridSource: PropTypes.array,
-  dispatch: React.PropTypes.func,
+  dispatch: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {

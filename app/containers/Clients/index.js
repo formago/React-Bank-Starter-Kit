@@ -58,7 +58,7 @@ class Clients extends React.Component {
 Clients.propTypes = {
   columns: PropTypes.array,
   gridSource: PropTypes.array,
-  dispatch: React.PropTypes.func
+  dispatch: PropTypes.func
 };
 
 export function mapDispatchToProps(dispatch) {

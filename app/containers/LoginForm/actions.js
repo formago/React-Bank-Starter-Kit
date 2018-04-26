@@ -14,7 +14,7 @@ import {
   LOGOUT,
   REQUEST_ERROR,
   CLEAR_ERROR,
-  TEST_REQUEST
+  TEST_ENTRY
 } from './constants'
 
 /**
@@ -65,7 +65,7 @@ export function loginRequest() {
 
 
 export function testEntry() {
-  return { type: TEST_REQUEST }
+  return { type: TEST_ENTRY }
 }
 
 /**

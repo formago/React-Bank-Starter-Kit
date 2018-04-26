@@ -9,6 +9,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { makeSelectUsername, makeSelectPassword } from "./selectors";
+import PropTypes from 'prop-types';
 
 import { changeUserName, changePassword, loginRequest, testEntry } from "./actions";
 
@@ -48,7 +49,7 @@ class NormalLoginForm extends React.Component {
             />
           )}
         </FormItem>
-        <FormItem style={{textAlign:"right"}}>
+        <FormItem style={{ textAlign: "right" }}>
           {/* {getFieldDecorator("remember", {
             valuePropName: "checked",
             initialValue: true
@@ -57,15 +58,15 @@ class NormalLoginForm extends React.Component {
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            style={{marginRight:"15px"}}
+            style={{ marginRight: "15px" }}
           >
             Войти
           </Button>
 
-          <Button       
+          <Button
             htmlType="button"
-            className="login-form-button"  
-            onClick={this.props.testEntry}        >
+            className="login-form-button"
+            onClick={this.props.entry}        >
             Тестовый вход
           </Button>
         </FormItem>
@@ -75,7 +76,7 @@ class NormalLoginForm extends React.Component {
 }
 
 NormalLoginForm.propTypes = {
-  form: "any"
+  form: PropTypes.object
 };
 const mapDispatchToProps = function (dispatch, props) {
   return {
@@ -89,7 +90,7 @@ const mapDispatchToProps = function (dispatch, props) {
       event.preventDefault();
       dispatch(loginRequest());
     },
-    testEntry:event => {
+    entry: event => {
       event.preventDefault();
       dispatch(testEntry());
     },
