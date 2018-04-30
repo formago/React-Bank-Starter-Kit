@@ -21,7 +21,7 @@ class CabinetMenu extends React.Component {
   constructor(props) {
     console.log("constructor");
     super(props)
-    this.menuOnSelect = this.menuOnSelect.bind(this)  
+    // this.menuOnSelect = this.menuOnSelect.bind(this)
   }
 
   componentWillMount() {
@@ -55,7 +55,7 @@ class CabinetMenu extends React.Component {
   render() {
     console.log("render");
     return (
-      <Menu theme="dark" onSelect={this.menuOnSelect} selectedKeys={[this.props.menuId]} defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
+      <Menu theme="dark" selectedKeys={[this.props.menuId]} defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}
         {this.props.source.map((it) => this.call(it))}
       </Menu>
