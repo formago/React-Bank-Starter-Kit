@@ -76,6 +76,7 @@ export function* refresh() {
  * Effect to handle logging out
  */
 export function* logout() {
+  
   // We tell Redux we're in the middle of a request
   yield put({ type: SENDING_REQUEST, sending: true });
 
@@ -116,9 +117,7 @@ export function* loginFlow() {
     if (winner.auth) {
       // yield put(userAuthorized(username, password));
 
-      setInterval(function () {
-        call(refresh);
-      }, 5000);
+     
 
       yield put({
         type: CHANGE_FORM,
@@ -137,8 +136,7 @@ export function* testLoginFlow() {
   // Basically here we say "this saga is always listening for actions"
   while (true) {
     // And we're listening for `LOGIN_REQUEST` actions and destructuring its payload
-    const request = yield take(TEST_ENTRY);
-
+    const request = yield take(TEST_ENTRY); 
     const username = "user1";
     const password = "123123";
     // A `LOGOUT` action may happen while the `authorize` effect is going on, which may
@@ -152,9 +150,9 @@ export function* testLoginFlow() {
     // If `authorize` was the winner...
     if (winner.auth) {
       // yield put(userAuthorized(username, password));
-      setInterval(function () {
-        call(refresh);
-      }, 5000);
+      // setInterval(function () {
+      //   call(refresh);
+      // }, 5000);
 
       yield put({
         type: CHANGE_FORM,

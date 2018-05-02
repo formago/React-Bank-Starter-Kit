@@ -6,12 +6,11 @@ import Home from "containers/Home/Loadable";
 import Documents from "containers/Documents/Loadable";
 import Statements from "containers/Statements/Loadable";
 import Chat from "containers/Chat/index";
-import AntDPage from "containers/AntDPage/Loadable";
 import Clients from "containers/Clients/Loadable";
 import CabinetMenu from "containers/Menu";
 import Logo from "components/Logo";
 import H1 from "components/H1";
-import {HeaderArea}  from "components/HeaderArea";
+import HeaderArea from "containers/HeaderArea";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -22,7 +21,9 @@ export default class Cabinet extends React.PureComponent {
   onCollapse = collapsed => {
     this.setState({ collapsed });
   };
-
+  componentDidCatch(error, info) {
+    console.log(error, info);
+  }
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }} className="cabinet">
@@ -64,7 +65,6 @@ export default class Cabinet extends React.PureComponent {
                   <Route exact path="/Cabinet" component={Home} />
                   <Route path="/Cabinet/Documents" component={Documents} />
                   <Route path="/Cabinet/Statements" component={Statements} />
-                  <Route path="/Cabinet/AntDPage" component={AntDPage} />
                   <Route
                     path="/Cabinet/clientcore/clients/clients"
                     component={Clients}

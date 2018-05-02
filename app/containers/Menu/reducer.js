@@ -2,7 +2,8 @@ import { fromJS } from 'immutable';
 
 import {
   REQUEST_SUCCESS,
-  SET_CURRENT_MENU_ITEM
+  SET_CURRENT_MENU_ITEM,
+  REQUEST_ERROR
 } from './constants';
 
 const initialState = fromJS({
@@ -18,10 +19,12 @@ function cabinetMenuReducer(state = initialState, action) {
       }
       else return state;
     case SET_CURRENT_MENU_ITEM:
-      if (action) {        
+      if (action) {
         return state
           .set('menuId', action.menuId);
       }
+    case REQUEST_ERROR:      
+      throw new Error("componentError");
     default:
       return state;
   }

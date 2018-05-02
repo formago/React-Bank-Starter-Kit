@@ -16,8 +16,7 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 class CabinetMenu extends React.Component {
-
-
+  
   constructor(props) {
     console.log("constructor");
     super(props)
@@ -26,6 +25,11 @@ class CabinetMenu extends React.Component {
 
   componentWillMount() {
     this.getMenu();
+  }
+
+  componentDidCatch(error, info) {
+    debugger
+    console.log(error, info);
   }
 
   getMenu() {

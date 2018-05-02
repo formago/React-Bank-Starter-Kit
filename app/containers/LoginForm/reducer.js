@@ -10,7 +10,8 @@ import {
   SENDING_REQUEST,
   REQUEST_ERROR,
   CLEAR_ERROR,
-  TEST_ENTRY
+  TEST_ENTRY,
+  LOGOUT
 } from "./constants";
 
 import auth from "./auth";
@@ -31,13 +32,13 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_FORM:
       return { ...state, formState: action.newFormState };
-    case CHANGE_USERNAME:    
+    case CHANGE_USERNAME:
       var newFormState = {
         ...state.formState,
         username: action.newUserName
       };
       return { ...state, formState: newFormState };
-    case CHANGE_PASSWORD:    
+    case CHANGE_PASSWORD:
       var newFormState = {
         ...state.formState,
         password: action.newPassword
@@ -49,7 +50,11 @@ function reducer(state = initialState, action) {
       return { ...state, currentlySending: action.sending };
     case REQUEST_ERROR:
       return { ...state, error: action.error };
+    case TEST_ENTRY:
+      return { ...state, number: action.number };
     case CLEAR_ERROR:
+      return { ...state, error: "" };
+    case LOGOUT:
       return { ...state, error: "" };
     default:
       return state;

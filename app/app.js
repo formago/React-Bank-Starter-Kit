@@ -19,10 +19,8 @@ import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
-
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
-
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-webpack-loader-syntax */

@@ -17,27 +17,16 @@ import { Switch, Route } from 'react-router-dom';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Cabinet from 'containers/Cabinet/Loadable';
 import Default from 'containers/Default/Loadable';
+import PrivateRoute from 'components/PrivateRoute';
 
 // import { getMenuItems } from '../../components/Menu/actions';
 
 export default function App() {
-  // IS CALLED BUT HERE store = {} AND IS NOT A FUNCTION, CHECK IT LATER!
-  // function getMenu() {
-  //   const store = this.context;
-  //   const { menuData } = store.getState();
-  //   if (!menuData) {
-  //     store.dispatch(getMenuItems());
-  //   }
-  // }
-
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Default} />
-        {/* <Route render={getMenu}>
-          <Route path="/Cabinet" component={Cabinet} />
-        </Route> */}
-        <Route path="/Cabinet" component={Cabinet} />
+        <Route exact path="/" component={Default} /> 
+        <PrivateRoute path="/Cabinet" component={Cabinet} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

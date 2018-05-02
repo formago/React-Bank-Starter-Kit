@@ -2,7 +2,7 @@ import service from "./service";
 
 import localStorage from "utils/localstorage.js"
 
-const auth = {
+const authFlow = {
   /**
    * Logs a user in, returning a promise with `true` when done
    * @param  {string} username The username of the user
@@ -58,4 +58,4 @@ const auth = {
   onChange() { }
 };
 
-export default auth;
+export default authFlow;

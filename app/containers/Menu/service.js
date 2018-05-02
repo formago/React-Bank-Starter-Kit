@@ -25,11 +25,16 @@ const service = {
         'Content-Type': 'application/json',
         "atoken": localStorage.token
       }),
-    }).then(response => {
+    }).then(response => {      
+      if(!response.ok)
+      throw new Error("my custom error");
       return response.json();
+    }).catch(error => {      
+      console.log(error);
+      throw Error(error.message);
     });
   },
-  setMenuId(menuId) {    
+  setMenuId(menuId) {
     localStorage.menuId = menuId;
     return true;
   }

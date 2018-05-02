@@ -76,7 +76,8 @@ class NormalLoginForm extends React.Component {
 }
 
 NormalLoginForm.propTypes = {
-  form: PropTypes.object
+  form: PropTypes.object,
+  testEntry: PropTypes.func
 };
 const mapDispatchToProps = function (dispatch, props) {
   return {
@@ -88,11 +89,11 @@ const mapDispatchToProps = function (dispatch, props) {
     },
     handleSubmit: event => {
       event.preventDefault();
-      dispatch(loginRequest());
+      dispatch(loginRequest({}));
     },
     entry: event => {
-      event.preventDefault();
-      dispatch(testEntry());
+      // event.preventDefault();
+      dispatch(testEntry(1));
     },
   };
 };

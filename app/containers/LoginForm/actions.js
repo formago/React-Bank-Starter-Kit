@@ -62,10 +62,8 @@ export function loginRequest() {
   return { type: LOGIN_REQUEST }
 }
 
-
-
-export function testEntry() {
-  return { type: TEST_ENTRY }
+export function testEntry(number) {
+  return { type: TEST_ENTRY, number  }
 }
 
 /**
