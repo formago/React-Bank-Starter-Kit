@@ -1,6 +1,5 @@
 /* eslint-disable */
 const keys = require('config/endpoints');
-import { httpGet, httpPost } from 'utils/httpRequest';
 import parameters from './parameters';
 
 

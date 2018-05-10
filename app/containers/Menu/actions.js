@@ -3,7 +3,7 @@ import {
   SENDING_REQUEST,
   REQUEST_SUCCESS,
   REQUEST_ERROR,
-  SET_CURRENT_MENU_ITEM
+  SET_CURRENT_MENU_ITEM,
 } from './constants';
 
 

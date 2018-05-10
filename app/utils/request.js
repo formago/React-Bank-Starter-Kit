@@ -1,4 +1,3 @@
-import 'whatwg-fetch';
 
 /**
  * Parses the JSON returned by a network request
@@ -39,8 +38,22 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default function request(url, options) {
+export function request(url, options) {
   return fetch(url, options)
+    .then(checkStatus)
+    .then(parseJSON);
+}
+
+export function requestAuth(url, options) {
+  const authOptions = {
+    // method: 'GET',  // think about needing so much specials methods
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      atoken: localStorage.token,
+    }),
+  };
+  const fullOptions = Object.assign(authOptions, options);
+  return fetch(url, fullOptions)
     .then(checkStatus)
     .then(parseJSON);
 }

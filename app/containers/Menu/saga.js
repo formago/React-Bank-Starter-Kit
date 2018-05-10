@@ -5,7 +5,7 @@ import {
   REQUEST,
   REQUEST_SUCCESS,
   REQUEST_ERROR,
-  SET_CURRENT_MENU_ITEM
+  SET_CURRENT_MENU_ITEM,
 } from './constants';
 
 export function* menuFlow() {
@@ -14,8 +14,8 @@ export function* menuFlow() {
   while (true) {
     yield take(REQUEST);
 
-    try {  
-      const response = yield call(service.getMenu);  
+    try {
+      const response = yield call(service.getMenu);
       yield put({ type: REQUEST_SUCCESS, response });
     } catch (error) {
       yield put({ type: REQUEST_ERROR, error: error.message });
@@ -27,17 +27,17 @@ export function* menuFlowCurrentItem() {
   // Because sagas are generators, doing `while (true)` doesn't block our program
   // Basically here we say "this saga is always listening for actions"
   while (true) {
-    const {menuId} = yield take(SET_CURRENT_MENU_ITEM);
+    const { menuId } = yield take(SET_CURRENT_MENU_ITEM);
 
-    try {  
-      const response = yield call(service.setMenuId, menuId);  
+    try {
+      yield call(service.setMenuId, menuId);
       // yield put({ type: REQUEST_SUCCESS, response });
     } catch (error) {
       // yield put({ type: REQUEST_ERROR, error: error.message });
     }
 
-    // try {  
-    //   const response = yield call(service.getMenu);  
+    // try {
+    //   const response = yield call(service.getMenu);
     //   yield put({ type: REQUEST_SUCCESS, response });
     // } catch (error) {
     //   yield put({ type: REQUEST_ERROR, error: error.message });

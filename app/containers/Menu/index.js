@@ -16,20 +16,9 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 class CabinetMenu extends React.Component {
-  
-  constructor(props) {
-    console.log("constructor");
-    super(props)
-    // this.menuOnSelect = this.menuOnSelect.bind(this)
-  }
 
   componentWillMount() {
     this.getMenu();
-  }
-
-  componentDidCatch(error, info) {
-    debugger
-    console.log(error, info);
   }
 
   getMenu() {
@@ -40,12 +29,12 @@ class CabinetMenu extends React.Component {
     this.props.dispatch(setCurrentMenuItem(e.key));
   }
 
-  call = function (it) {
+  call = function call(it) {
     if (it.childList && it.childList.length === 0) {
       return (<MenuItem key={it.menuId}>
         <Icon type="user" />
         <span>{it.menuName}</span>
-        <Link to={"/Cabinet/" + it.url}> </Link>
+        <Link to={`/Cabinet/${it.url}`}> </Link>
       </MenuItem>);
     }
     return (<SubMenu key={it.menuId} title={<span><Icon type="link" /><span>{it.menuName}</span></span>}>
@@ -57,7 +46,6 @@ class CabinetMenu extends React.Component {
   // menuItems = this.props.source.map((it) => this.call(it));
 
   render() {
-    console.log("render");
     return (
       <Menu theme="dark" selectedKeys={[this.props.menuId]} defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}
@@ -74,7 +62,6 @@ CabinetMenu.propTypes = {
 };
 
 export function mapDispatchToProps(dispatch) {
-  console.log("mDispatchToProps");
   return {
     dispatch,
   };
@@ -82,7 +69,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   source: makeSelectSource(),
-  menuId: makeMenuId()
+  menuId: makeMenuId(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
