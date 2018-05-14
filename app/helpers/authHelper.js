@@ -1,8 +1,7 @@
-import service from "./service";
+import localStorage from 'utils/localstorage';
+import service from '../services/service';
 
-import localStorage from "utils/localstorage.js"
-
-const auth = {
+const authHelper = {
   /**
    * Logs a user in, returning a promise with `true` when done
    * @param  {string} username The username of the user
@@ -11,20 +10,20 @@ const auth = {
   login(username, password) {
     // if (auth.loggedIn()) return Promise.resolve(true);
     // Post a fake request
-    return service.post("/login", { username, password }).then(response => {
+    return service.login({ username, password }).then((response) => {
       // Save token to local storage
       localStorage.token = response.armAccessToken;
       localStorage.refreshToken = response.armRefreshToken;
       localStorage.user = JSON.stringify(response);
       return response;
-    }).catch(function (error) {      
-      console.log(error.message)
+    }).catch((error) => {
+      console.log(error.message);
     });
   },
 
   refreshAccessToken() {
-    return service.post("/refresh").then(response => {
-      // Save token to local storage      
+    return service.refresh().then((response) => {
+      // Save token to local storage
       localStorage.token = response.accessToken;
       return response;
     });
@@ -33,7 +32,7 @@ const auth = {
    * Logs the current user out
    */
   logout() {
-    return service.post("/logout");
+    return service.logout();
   },
   /**
    * Checks if a user is logged in
@@ -49,13 +48,12 @@ const auth = {
   register(username, password) {
     // Post a fake request
     return (
-      service
-        .post("/register", { username, password })
+      service.register({ username, password })
         // Log user in after registering
-        .then(() => auth.login(username, password))
+        .then(() => this.login(username, password))
     );
   },
-  onChange() { }
+  onChange() { },
 };
 
-export default auth;
+export default authHelper;

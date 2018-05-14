@@ -10,26 +10,26 @@
  *   return state.set('yourStateVariable', true);
  */
 
-import { fromJS } from "immutable";
+import { fromJS } from 'immutable';
 
 import {
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS,
-  LOAD_REPOS_ERROR,
-  USER_AUTHORIZED
-} from "./constants";
+  // LOAD_REPOS_SUCCESS,
+  // LOAD_REPOS,
+  // LOAD_REPOS_ERROR,
+  USER_AUTHORIZED,
+} from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false 
+  currentUser: false,
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case USER_AUTHORIZED:
-      return state.set("currentUser", { ...action.info });
+      return state.set('currentUser', { ...action.info });
     default:
       return state;
   }

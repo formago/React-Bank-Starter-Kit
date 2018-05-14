@@ -14,8 +14,8 @@ import {
   LOGOUT,
   REQUEST_ERROR,
   CLEAR_ERROR,
-  TEST_ENTRY
-} from './constants'
+  TEST_ENTRY,
+} from './constants';
 
 /**
  * Sets the form state
@@ -24,15 +24,15 @@ import {
  * @param  {string} newFormState.password The new text of the password input field of the form
  */
 export function changeForm(newFormState) {
-  return { type: CHANGE_FORM, newFormState }
+  return { type: CHANGE_FORM, newFormState };
 }
 
 export function changeUserName(newUserName) {
-  return { type: CHANGE_USERNAME, newUserName }
+  return { type: CHANGE_USERNAME, newUserName };
 }
 
 export function changePassword(newPassword) {
-  return { type: CHANGE_PASSWORD, newPassword }
+  return { type: CHANGE_PASSWORD, newPassword };
 }
 
 
@@ -41,7 +41,7 @@ export function changePassword(newPassword) {
  * @param  {boolean} newAuthState True means a user is logged in, false means no user is logged in
  */
 export function setAuthState(newAuthState) {
-  return { type: SET_AUTH, newAuthState }
+  return { type: SET_AUTH, newAuthState };
 }
 
 /**
@@ -49,7 +49,7 @@ export function setAuthState(newAuthState) {
  * @param  {boolean} sending True means we're sending a request, false means we're not
  */
 export function sendingRequest(sending) {
-  return { type: SENDING_REQUEST, sending }
+  return { type: SENDING_REQUEST, sending };
 }
 
 /**
@@ -59,18 +59,18 @@ export function sendingRequest(sending) {
  * @param  {string} data.password The password of the user to log in
  */
 export function loginRequest() {
-  return { type: LOGIN_REQUEST }
+  return { type: LOGIN_REQUEST };
 }
 
 export function testEntry(number) {
-  return { type: TEST_ENTRY, number  }
+  return { type: TEST_ENTRY, number };
 }
 
 /**
  * Tells the app we want to log out a user
  */
 export function logout() {
-  return { type: LOGOUT }
+  return { type: LOGOUT };
 }
 
 /**
@@ -80,7 +80,7 @@ export function logout() {
  * @param  {string} data.password The password of the user to register
  */
 export function registerRequest(data) {
-  return { type: REGISTER_REQUEST, data }
+  return { type: REGISTER_REQUEST, data };
 }
 
 /**
@@ -88,12 +88,12 @@ export function registerRequest(data) {
  * @param  {object} error The error we got when trying to make the request
  */
 export function requestError(error) {
-  return { type: REQUEST_ERROR, error }
+  return { type: REQUEST_ERROR, error };
 }
 
 /**
  * Sets the `error` state as empty
  */
 export function clearError() {
-  return { type: CLEAR_ERROR }
+  return { type: CLEAR_ERROR };
 }

@@ -25,7 +25,12 @@ function checkStatus(response) {
     return response;
   }
 
-  const error = new Error(response.statusText);
+  let error;
+  if (response.errMessForClient) {
+    error = new Error(response.errMessForClient);
+  } else {
+    error = new Error(response.statusText);
+  }
   error.response = response;
   throw error;
 }

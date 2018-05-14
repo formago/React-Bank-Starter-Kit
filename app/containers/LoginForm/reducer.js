@@ -11,37 +11,38 @@ import {
   REQUEST_ERROR,
   CLEAR_ERROR,
   TEST_ENTRY,
-  LOGOUT
-} from "./constants";
+  LOGOUT,
+} from './constants';
 
-import auth from "./auth";
+import auth from '../../helpers/authHelper';
 
 // The initial application state
-let initialState = {
+const initialState = {
   formState: {
-    username: "",
-    password: ""
+    username: '',
+    password: '',
   },
-  error: "",
+  error: '',
   currentlySending: false,
-  loggedIn: auth.loggedIn()
+  loggedIn: auth.loggedIn(),
 };
 
 // Takes care of changing the application state
 function reducer(state = initialState, action) {
+  let newFormState = null;
   switch (action.type) {
     case CHANGE_FORM:
       return { ...state, formState: action.newFormState };
     case CHANGE_USERNAME:
-      var newFormState = {
+      newFormState = {
         ...state.formState,
-        username: action.newUserName
+        username: action.newUserName,
       };
       return { ...state, formState: newFormState };
     case CHANGE_PASSWORD:
-      var newFormState = {
+      newFormState = {
         ...state.formState,
-        password: action.newPassword
+        password: action.newPassword,
       };
       return { ...state, formState: newFormState };
     case SET_AUTH:
@@ -53,9 +54,9 @@ function reducer(state = initialState, action) {
     case TEST_ENTRY:
       return { ...state, number: action.number };
     case CLEAR_ERROR:
-      return { ...state, error: "" };
+      return { ...state, error: '' };
     case LOGOUT:
-      return { ...state, error: "" };
+      return { ...state, error: '' };
     default:
       return state;
   }

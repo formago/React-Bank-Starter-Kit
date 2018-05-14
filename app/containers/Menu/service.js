@@ -12,17 +12,12 @@ if (global.process && process.env.NODE_ENV === 'test') {
 
 const service = {
   getMenu() {
-    // const token = localStorage.token;
-    const url =
-      'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu';
-
-    // const data = [];
-
-    // let userInfo;
+    const url = 'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu';
     return requestAuth(url, {
       method: 'GET',
     });
   },
+
   setMenuId(menuId) {
     localStorage.menuId = menuId;
     return true;
