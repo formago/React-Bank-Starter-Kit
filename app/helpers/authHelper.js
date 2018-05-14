@@ -1,5 +1,5 @@
 import localStorage from 'utils/localstorage';
-import service from '../services/service';
+import service from '../services/authService';
 
 const authHelper = {
   /**
