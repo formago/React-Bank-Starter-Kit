@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { Link, Switch, Route } from "react-router-dom";
-import { Layout, Popover, Button, Row, Col } from "antd";
-import Home from "containers/Home/Loadable";
-import Documents from "containers/Documents/Loadable";
-import Statements from "containers/Statements/Loadable";
-import Chat from "containers/Chat/index";
-import Clients from "containers/Clients/Loadable";
-import CabinetMenu from "containers/Menu";
-import Logo from "components/Logo";
-import H1 from "components/H1";
-import HeaderArea from "containers/HeaderArea";
+import { Switch, Route } from 'react-router-dom';
+import { Layout, Row, Col } from 'antd';
+import Home from 'containers/Home/Loadable';
+import Documents from 'containers/Documents/Loadable';
+import Statements from 'containers/Statements/Loadable';
+import Chat from 'containers/Chat/index';
+import Clients from 'containers/Clients/Loadable';
+import CabinetMenu from 'containers/Menu';
+import Logo from 'components/Logo';
+import H1 from 'components/H1';
+import HeaderArea from 'containers/HeaderArea';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 export default class Cabinet extends React.PureComponent {
   state = {
-    collapsed: false
+    collapsed: false,
   };
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.setState({ collapsed });
   };
   componentDidCatch(error, info) {
@@ -26,7 +26,7 @@ export default class Cabinet extends React.PureComponent {
   }
   render() {
     return (
-      <Layout style={{ minHeight: "100vh" }} className="cabinet">
+      <Layout style={{ minHeight: '100vh' }} className="cabinet">
 
         <Sider
           collapsible
@@ -38,11 +38,11 @@ export default class Cabinet extends React.PureComponent {
             <Logo />
             <H1
               style={{
-                color: "white",
-                float: "right",
-                marginLeft: "10px",
-                lineHeight: "80px",
-                marginBottom: "0px"
+                color: 'white',
+                float: 'right',
+                marginLeft: '10px',
+                lineHeight: '80px',
+                marginBottom: '0px',
               }}
             >
               Банк
@@ -54,8 +54,8 @@ export default class Cabinet extends React.PureComponent {
           <HeaderArea />
           <Content
             style={{
-              margin: "24px 24px 0px",
-              height: "100%"
+              margin: '24px 24px 0px',
+              height: '100%',
             }}
           >
 
