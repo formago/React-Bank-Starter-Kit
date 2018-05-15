@@ -11,7 +11,7 @@ import {
   REQUEST_ERROR,
   CLEAR_ERROR,
   TEST_ENTRY,
-  LOGOUT,
+  // LOGOUT,
 } from './constants';
 
 import auth from '../../helpers/authHelper';
@@ -55,8 +55,8 @@ function reducer(state = initialState, action) {
       return { ...state, number: action.number };
     case CLEAR_ERROR:
       return { ...state, error: '' };
-    case LOGOUT:
-      return { ...state, error: '' };
+    // case LOGOUT:
+    //   return { ...state, error: '' };
     default:
       return state;
   }

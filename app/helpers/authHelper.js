@@ -25,6 +25,7 @@ const authHelper = {
     return service.refresh().then((response) => {
       // Save token to local storage
       localStorage.token = response.accessToken;
+      localStorage.refreshToken = response.refreshToken;
       return response;
     });
   },

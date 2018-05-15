@@ -11,6 +11,6 @@ export const SENDING_REQUEST = 'SENDING_REQUEST';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const TEST_ENTRY = 'TEST_ENTRY';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
-export const LOGOUT = 'LOGOUT';
+// export const LOGOUT = 'LOGOUT';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';

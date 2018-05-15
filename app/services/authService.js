@@ -41,6 +41,8 @@ const service = {
       method: 'GET',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
+        refresh_atoken: localStorage.refreshToken, // API wait this, but imho we need atoken
+        // atoken: localStorage.token,
       },
     });
   },

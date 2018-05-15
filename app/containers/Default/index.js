@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import LoginPage from 'containers/Default/LoginPage/Loadable';
 
-import authorizeHelper from 'utils/authorize';
+import authHelper from '../../helpers/authHelper';
 
 const { Header, Content, Footer } = Layout;
 const MenuItem = Menu.Item;
@@ -14,23 +14,20 @@ export default class Default extends React.Component {
   state = {
     collapsed: false,
   };
+
+  componentWillMount() {
+    const { history } = this.props;  // eslint-disable-line react/prop-types
+    if (authHelper.loggedIn()) {
+      history.push('/Cabinet');
+    }
+  }
+
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
   };
-  
-  componentWillMount() {
-    const { history } = this.props;   
-    if (authorizeHelper.isAuthorized())
-      history.push("/Cabinet");
-  }
 
   render() {
-
-    // if (true)
-    //   return <Redirect to="/Cabinet" push={true} />
-    // else
     return (
-
       <Layout className="layout" style={{ minHeight: '100vh' }}>
         <Header>
           <div className="logo" />

@@ -18,10 +18,12 @@ import {
   // TEST_ENTRY,
   REGISTER_REQUEST,
   SET_AUTH,
-  LOGOUT,
+  // LOGOUT,
   CHANGE_FORM,
   REQUEST_ERROR,
 } from './constants';
+
+import { LOGOUT } from '../../actions/constants';
 
 /**
  * Effect to handle authorization
@@ -98,8 +100,6 @@ export function* loginFlow() {
     // If `authorize` was the winner...
     if (winner.auth) {
       // yield put(userAuthorized(username, password));
-
-
       yield put({
         type: CHANGE_FORM,
         newFormState: { username: '', password: '' },

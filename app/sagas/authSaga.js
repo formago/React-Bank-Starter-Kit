@@ -4,11 +4,11 @@ import localStorage from 'utils/localstorage';
 import { push } from 'react-router-redux';
 
 import {
-    TEST_ENTRY,
+    // TEST_ENTRY,
     LOGOUT,
-} from '../containers/LoginForm/constants';
+} from '../actions/constants';
 // import { loginFlow } from '../containers/LoginForm/saga.js';
-import authHelper from '../helpers/authHelper';
+// import authHelper from '../helpers/authHelper';
 
 let refreshStop;
 
@@ -23,18 +23,18 @@ export function* logoutFlow() {
   }
 }
 
-export function* loginFlow1() {
-  while (true) {
-    yield take(TEST_ENTRY);
-    console.log('testEntry');
-    refreshStop = setInterval(() => {
-      authHelper.refreshAccessToken();
-    }, 10000);
-  }
-}
+// export function* loginFlow1() {
+//   while (true) {
+//     yield take(TEST_ENTRY);
+//     console.log('testEntry');
+//     refreshStop = setInterval(() => {
+//       authHelper.refreshAccessToken();
+//     }, 10000);
+//   }
+// }
 
 
 export default function* root() {
   yield fork(logoutFlow);
-  yield fork(loginFlow1);
+  // yield fork(loginFlow1);
 }

@@ -11,7 +11,7 @@ import {
   SENDING_REQUEST,
   LOGIN_REQUEST,
   REGISTER_REQUEST,
-  LOGOUT,
+  // LOGOUT,
   REQUEST_ERROR,
   CLEAR_ERROR,
   TEST_ENTRY,
@@ -69,9 +69,9 @@ export function testEntry(number) {
 /**
  * Tells the app we want to log out a user
  */
-export function logout() {
-  return { type: LOGOUT };
-}
+// export function logout() {
+//   return { type: LOGOUT };
+// }
 
 /**
  * Tells the app we want to register a user

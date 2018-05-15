@@ -3,10 +3,8 @@
  */
 
 // We import constants to name our actions' type
-import { 
-    LOGOUT  
-  } from 'constants'
+import { LOGOUT } from './constants';
 
-  export function logout() {
-    return { type: LOGOUT }
-  }
+export function logout() {
+  return { type: LOGOUT };
+}
