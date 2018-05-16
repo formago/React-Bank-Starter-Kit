@@ -1,9 +1,10 @@
 
+import localStorage from 'utils/localstorage';
+import authHelper from '../helpers/authHelper';
+
 /**
  * Parses the JSON returned by a network request
- *
  * @param  {object} response A response from a network request
- *
  * @return {object}          The parsed JSON from the request
  */
 function parseJSON(response) {
@@ -15,9 +16,7 @@ function parseJSON(response) {
 
 /**
  * Checks if a network request came back fine, and throws an error if not
- *
  * @param  {object} response   A response from a network request
- *
  * @return {object|undefined} Returns either the response, or throws an error
  */
 function checkStatus(response) {
@@ -37,10 +36,8 @@ function checkStatus(response) {
 
 /**
  * Requests a URL, returning a promise
- *
  * @param  {string} url       The URL we want to request
  * @param  {object} [options] The options we want to pass to "fetch"
- *
  * @return {object}           The response data
  */
 export function request(url, options) {
@@ -50,6 +47,17 @@ export function request(url, options) {
 }
 
 export function requestAuth(url, options) {
+  if (false) { // if (localStorage.lifeTimeToken > Date.now()) {
+    return authHelper.refreshAccessToken()
+    .then(() => doAuthRequest(url, options))
+    .catch((err) => {
+      throw err;
+    });
+  }
+  return doAuthRequest(url, options);
+}
+
+function doAuthRequest(url, options) {
   const authOptions = {
     // method: 'GET',  // think about needing so much specials methods
     headers: new Headers({
@@ -58,7 +66,5 @@ export function requestAuth(url, options) {
     }),
   };
   const fullOptions = Object.assign(authOptions, options);
-  return fetch(url, fullOptions)
-    .then(checkStatus)
-    .then(parseJSON);
+  return request(url, fullOptions);
 }

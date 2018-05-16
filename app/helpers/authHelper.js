@@ -13,6 +13,7 @@ const authHelper = {
     return service.login({ username, password }).then((response) => {
       // Save token to local storage
       localStorage.token = response.armAccessToken;
+      // localStorage.lifeTimeToken = response.lifeTimeArmAccessToken;
       localStorage.refreshToken = response.armRefreshToken;
       localStorage.user = JSON.stringify(response);
       return response;
@@ -26,6 +27,7 @@ const authHelper = {
       // Save token to local storage
       localStorage.token = response.accessToken;
       localStorage.refreshToken = response.refreshToken;
+      // localStorage.lifeTimeToken = response.lifeTimeArmAccessToken;
       return response;
     });
   },

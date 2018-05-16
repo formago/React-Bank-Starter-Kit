@@ -14,22 +14,3 @@
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
-
-import {
-  REFRESH_ACCESS_TOKEN,
-  USER_AUTHORIZED
-} from './constants';
-
-
-export function userAuthorized() {
-  return {
-    type: USER_AUTHORIZED,
-  };
-}
-
-
-export function refreshAccesstoken() {
-  return {
-    type: REFRESH_ACCESS_TOKEN,
-  };
-}
