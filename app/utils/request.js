@@ -1,4 +1,3 @@
-
 import localStorage from 'utils/localstorage';
 import authHelper from '../helpers/authHelper';
 
@@ -47,6 +46,9 @@ export function request(url, options) {
 }
 
 export function requestAuth(url, options) {
+  // const error = new Error('Message for Client');
+  // throw error;
+
   if (false) { // if (localStorage.lifeTimeToken > Date.now()) {
     return authHelper.refreshAccessToken()
     .then(() => doAuthRequest(url, options))

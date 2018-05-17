@@ -18,10 +18,12 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Cabinet from 'containers/Cabinet/Loadable';
 import Default from 'containers/Default/Loadable';
 import PrivateRoute from 'components/PrivateRoute';
+import startErrorLogger from 'utils/errorLogger';
 
 // import { getMenuItems } from '../../components/Menu/actions';
 
 export default function App() {
+  startErrorLogger();
   return (
     <div>
       <Switch>

@@ -39,15 +39,15 @@ import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
+import 'ant-design-pro/dist/ant-design-pro.css';
 
 import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
-
 // Import CSS reset and Global Styles
 import './global-styles';
-import 'ant-design-pro/dist/ant-design-pro.css';
+
 import './content/styles/main.less';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
@@ -72,7 +72,7 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />      
+          <App />
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
