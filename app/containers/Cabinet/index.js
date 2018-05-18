@@ -32,7 +32,7 @@ export default class Cabinet extends React.PureComponent {
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
-          width="250"
+          width={250}
         >
           <div className="bank-logo" style={{}}>
             <Logo />

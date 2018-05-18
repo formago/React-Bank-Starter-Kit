@@ -47,7 +47,7 @@ class CabinetMenu extends React.Component {
 
   render() {
     return (
-      <Menu theme="dark" selectedKeys={[this.props.menuId]} defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
+      <Menu theme="dark" selectedKeys={[this.props.menuId]} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}
         {this.props.source.map((it) => this.call(it))}
       </Menu>
