@@ -12,11 +12,13 @@ const webpack = require('webpack');
 process.noDeprecation = true;
 
 module.exports = (options) => ({
+  mode: options.mode,
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
+  optimization: options.optimization,
   module: {
     rules: [
       {
@@ -28,8 +30,22 @@ module.exports = (options) => ({
             plugins: [
               ['import', {
                 libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css',
+                style: true,
+              }],
+            ],
+          },
+        },
+      },
+      {
+        test: /\.js$/, // Transform all .js files required somewhere with Babel
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          query: {
+            plugins: [
+              ['import', {
+                libraryName: 'ant-design-pro',
+                style: true,
               }],
             ],
           },
@@ -85,10 +101,6 @@ module.exports = (options) => ({
         use: 'html-loader',
       },
       {
-        test: /\.json$/,
-        use: 'json-loader',
-      },
-      {
         test: /\.(mp4|webm)$/,
         use: {
           loader: 'url-loader',
@@ -113,10 +125,12 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
-    modules: ['app', 'node_modules'],
+    modules: [
+      'node_modules',
+      'app',
+    ],
     extensions: [
       '.js',
       '.jsx',

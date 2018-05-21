@@ -28,19 +28,19 @@ shell.mv('internals/templates/containers', 'app');
 shell.mv('internals/templates/tests', 'app');
 
 // Handle translations/
-shell.rm('-rf', 'app/translations')
+shell.rm('-rf', 'app/translations');
 shell.mv('internals/templates/translations', 'app');
 
 // Handle utils/
 shell.rm('-rf', 'app/utils');
-shell.mv('internals/templates/utils', 'app')
+shell.mv('internals/templates/utils', 'app');
 
 // Replace the files in the root app/ folder
 shell.cp('internals/templates/app.js', 'app/app.js');
 shell.cp('internals/templates/global-styles.js', 'app/global-styles.js');
 shell.cp('internals/templates/i18n.js', 'app/i18n.js');
 shell.cp('internals/templates/index.html', 'app/index.html');
-// shell.cp('internals/templates/reducers.js', 'app/reducers.js');
+shell.cp('internals/templates/reducers.js', 'app/reducers.js');
 shell.cp('internals/templates/configureStore.js', 'app/configureStore.js');
 
 // Remove the templates folder
