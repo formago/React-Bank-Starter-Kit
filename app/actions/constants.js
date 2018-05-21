@@ -1,0 +1,2 @@
+export const LOGOUT = 'LOGOUT';
+export const REFRESH_ACCESS_TOKEN = 'REFRESH_ACCESS_TOKEN';

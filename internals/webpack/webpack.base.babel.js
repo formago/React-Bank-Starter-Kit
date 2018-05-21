@@ -12,11 +12,13 @@ const webpack = require('webpack');
 process.noDeprecation = true;
 
 module.exports = (options) => ({
+  mode: options.mode,
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
+  optimization: options.optimization,
   module: {
     rules: [
       {
@@ -24,16 +26,47 @@ module.exports = (options) => ({
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: options.babelQuery,
+          query: {
+            plugins: [
+              ['import', {
+                libraryName: 'antd',
+                style: true,
+              }],
+            ],
+          },
+        },
+      },
+      {
+        test: /\.js$/, // Transform all .js files required somewhere with Babel
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          query: {
+            plugins: [
+              ['import', {
+                libraryName: 'ant-design-pro',
+                style: true,
+              }],
+            ],
+          },
         },
       },
       {
         // Preprocess our own .css files
         // This is the place to add your own loaders (e.g. sass/less etc.)
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
-        test: /\.css$/,
+        test: /\.less$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'less-loader',
+        ],
       },
       {
         // Preprocess 3rd party .css files located in node_modules
@@ -68,10 +101,6 @@ module.exports = (options) => ({
         use: 'html-loader',
       },
       {
-        test: /\.json$/,
-        use: 'json-loader',
-      },
-      {
         test: /\.(mp4|webm)$/,
         use: {
           loader: 'url-loader',
@@ -96,10 +125,12 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
-    modules: ['app', 'node_modules'],
+    modules: [
+      'node_modules',
+      'app',
+    ],
     extensions: [
       '.js',
       '.jsx',
