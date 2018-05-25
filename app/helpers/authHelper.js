@@ -1,5 +1,5 @@
-import localStorage from 'utils/localstorage';
-import service from '../services/authService';
+import localStorage from "utils/localstorage";
+import service from "../services/authService";
 
 const authHelper = {
   /**
@@ -8,22 +8,26 @@ const authHelper = {
    * @param  {string} password The password of the user
    */
   login(username, password) {
+    // debugger
     // if (auth.loggedIn()) return Promise.resolve(true);
     // Post a fake request
-    return service.login({ username, password }).then((response) => {
-      // Save token to local storage
-      localStorage.token = response.armAccessToken;
-      // localStorage.lifeTimeToken = response.lifeTimeArmAccessToken;
-      localStorage.refreshToken = response.armRefreshToken;
-      localStorage.user = JSON.stringify(response);
-      return response;
-    }).catch((error) => {
-      console.log(error.message);
-    });
+    return service
+      .login({ username, password })
+      .then(response => {
+        // Save token to local storage
+        localStorage.token = response.token;
+        // localStorage.lifeTimeToken = response.lifeTimeArmAccessToken;
+        localStorage.refreshToken = response.refreshToken;
+        localStorage.user = JSON.stringify(response);
+        return response;
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
   },
 
   refreshAccessToken() {
-    return service.refresh().then((response) => {
+    return service.refresh().then(response => {
       // Save token to local storage
       localStorage.token = response.accessToken;
       localStorage.refreshToken = response.refreshToken;
@@ -51,12 +55,13 @@ const authHelper = {
   register(username, password) {
     // Post a fake request
     return (
-      service.register({ username, password })
+      service
+        .register({ username, password })
         // Log user in after registering
         .then(() => this.login(username, password))
     );
   },
-  onChange() { },
+  onChange() {}
 };
 
 export default authHelper;

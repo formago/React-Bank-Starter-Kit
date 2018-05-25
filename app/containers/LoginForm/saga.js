@@ -14,8 +14,8 @@ import { USER_AUTHORIZED } from './../App/constants';
 
 import {
   SENDING_REQUEST,
-  // LOGIN_REQUEST,
-  // TEST_ENTRY,
+  LOGIN_REQUEST,
+  TEST_ENTRY,
   REGISTER_REQUEST,
   SET_AUTH,
   // LOGOUT,
@@ -74,7 +74,9 @@ export function* loginFlow() {
 
     let username;
     let password;
+    debugger
     switch (request.type) {
+
       case 'LOGIN_REQUEST':
         username = yield select(makeSelectUsername());
         password = yield select(makeSelectPassword());

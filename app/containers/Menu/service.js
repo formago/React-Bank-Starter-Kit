@@ -1,9 +1,10 @@
-import { requestAuth } from 'utils/request';
-import localStorageTest from 'localStorage';
+import localStorageTest from "localStorage";
 let localStorage;
+import { request, requestAuth } from "utils/request";
+const config = require("config/endpoints").get(process.env.NODE_ENV);
 
 // If we're testing, use a local storage polyfill
-if (global.process && process.env.NODE_ENV === 'test') {
+if (global.process && process.env.NODE_ENV === "test") {
   localStorage = localStorageTest;
 } else {
   // If not, use the browser one
@@ -11,17 +12,22 @@ if (global.process && process.env.NODE_ENV === 'test') {
 }
 
 const service = {
-  getMenu() {
-    const url = 'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu';
-    return requestAuth(url, {
-      method: 'GET',
+  getMenu(data) {
+    let baseURL = config.baseURL;
+    let listURL = config.menu.list;
+    let url = `${baseURL}${listURL}`;
+    return request(url, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   },
-
   setMenuId(menuId) {
     localStorage.menuId = menuId;
     return true;
-  },
+  }
 };
 
 export default service;

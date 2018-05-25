@@ -15,7 +15,7 @@ function cabinetMenuReducer(state = initialState, action) {
     case REQUEST_SUCCESS:
       if (action) {
         return state
-          .set('source', action.response.list);
+          .set('source', action.response);
       } return state;
     case SET_CURRENT_MENU_ITEM:
       if (action) {

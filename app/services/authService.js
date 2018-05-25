@@ -1,63 +1,70 @@
 // const keys = require('config/endpoints');
-import { request, requestAuth } from 'utils/request';
+import { request, requestAuth } from "utils/request";
+const config = require("config/endpoints").get(process.env.NODE_ENV);
 
 const service = {
-
   login(data) {
-    const url = 'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/login/';
+    let baseURL = config.baseURL;
+    let authURL = config.auth.login;
+
+    let url = `${baseURL}${authURL}`;
     const requestData = {
       login: data.username,
-      password: data.password,
+      password: data.password
     };
     return request(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
+        "content-type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin":"*"
       },
-      body: JSON.stringify(requestData),
+      body: JSON.stringify(requestData)
     });
   },
 
   // may be wrong, need check
   register(data) {
-    const url = 'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/register/';
+    const url =
+      "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/register/";
     const requestData = {
       login: data.username,
-      password: data.password,
+      password: data.password
     };
     return request(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
+        "content-type": "application/json;charset=UTF-8"
       },
-      body: JSON.stringify(requestData),
+      body: JSON.stringify(requestData)
     });
   },
 
   // may be wrong, need check
   logout() {
-    const url = 'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/logout/';
+    const url =
+      "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/logout/";
     return requestAuth(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
-        refresh_atoken: localStorage.refreshToken, // API wait this, but imho we need atoken
+        "content-type": "application/json;charset=UTF-8",
+        refresh_atoken: localStorage.refreshToken // API wait this, but imho we need atoken
         // atoken: localStorage.token,
-      },
+      }
     });
   },
 
   refresh() {
-    const url = 'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/refresh/';
+    const url =
+      "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/refresh/";
     const refreshToken = localStorage.refreshToken;
     return request(url, {
-      method: 'GET',
+      method: "GET",
       headers: new Headers({
-        'Content-Type': 'application/json',
-        refresh_atoken: refreshToken,
-      }),
+        "Content-Type": "application/json",
+        refresh_atoken: refreshToken
+      })
     });
-  },
+  }
 };
 
 export default service;

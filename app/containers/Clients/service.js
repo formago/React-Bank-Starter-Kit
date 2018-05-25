@@ -16,20 +16,20 @@ let service = {
 
     let baseURL = keys.baseURL;
     let listURL = keys.clients.list;
-    let accessToken = localStorage.token;  
+    let accessToken = localStorage.token;
 
-    let url = `${baseURL}${listURL}`;  
+    let url = `${baseURL}${listURL}`;
 
     let myHeaders = {
       "Content-type": "application/json",
       "atoken": localStorage.token
-    }; 
+    };
 
     return  fetch(url, {
-      method: "POST",    
+      method: "POST",
       headers: myHeaders,
       body: null,
-      // mode: "no-cors"      
+      // mode: "no-cors"
     }).then(function (response) {
       if (response.ok) {
         return response;
