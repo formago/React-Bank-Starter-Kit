@@ -1,5 +1,5 @@
-import localStorage from 'utils/localstorage';
-import authHelper from '../helpers/authHelper';
+import localStorage from "utils/localstorage";
+import authHelper from "../helpers/authHelper";
 
 /**
  * Parses the JSON returned by a network request
@@ -49,12 +49,14 @@ export function requestAuth(url, options) {
   // const error = new Error('Message for Client');
   // throw error;
 
-  if (false) { // if (localStorage.lifeTimeToken > Date.now()) {
-    return authHelper.refreshAccessToken()
-    .then(() => doAuthRequest(url, options))
-    .catch((err) => {
-      throw err;
-    });
+  if (false) {
+    // if (localStorage.lifeTimeToken > Date.now()) {
+    return authHelper
+      .refreshAccessToken()
+      .then(() => doAuthRequest(url, options))
+      .catch(err => {
+        throw err;
+      });
   }
   return doAuthRequest(url, options);
 }
@@ -63,10 +65,10 @@ function doAuthRequest(url, options) {
   const authOptions = {
     // method: 'GET',  // think about needing so much specials methods
     headers: new Headers({
-      'Content-Type': 'application/json',
-      atoken: localStorage.token,
-    }),
+      "Content-Type": "application/json",
+      token: localStorage.token
+    })
   };
-  const fullOptions = Object.assign(authOptions, options);
+  const fullOptions = { ...options, ...authOptions };
   return request(url, fullOptions);
 }

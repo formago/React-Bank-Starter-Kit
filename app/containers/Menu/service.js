@@ -16,7 +16,7 @@ const service = {
     let baseURL = config.baseURL;
     let listURL = config.menu.list;
     let url = `${baseURL}${listURL}`;
-    return request(url, {
+    return requestAuth(url, {
       method: "GET",
       headers: {
         "content-type": "application/json;charset=UTF-8",

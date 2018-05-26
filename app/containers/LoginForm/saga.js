@@ -4,12 +4,12 @@
 
 // Sagas help us gather all our side effects (network requests in this case) in one place
 
-import { browserHistory } from 'react-router';
-import { take, call, put, fork, race, select } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
-import auth from '../../helpers/authHelper';
-import { makeSelectUsername, makeSelectPassword } from './selectors';
-import { USER_AUTHORIZED } from './../App/constants';
+import { browserHistory } from "react-router";
+import { take, call, put, fork, race, select } from "redux-saga/effects";
+import { push } from "react-router-redux";
+import auth from "../../helpers/authHelper";
+import { makeSelectUsername, makeSelectPassword } from "./selectors";
+import { USER_AUTHORIZED } from "./../App/constants";
 // import { userAuthorized } from './../App/actions';
 
 import {
@@ -20,10 +20,10 @@ import {
   SET_AUTH,
   // LOGOUT,
   CHANGE_FORM,
-  REQUEST_ERROR,
-} from './constants';
+  REQUEST_ERROR
+} from "./constants";
 
-import { LOGOUT } from '../../actions/constants';
+import { LOGOUT } from "../../actions/constants";
 
 /**
  * Effect to handle authorization
@@ -48,7 +48,7 @@ export function* authorize({ username, password, isRegistering }) {
     }
     yield put({
       type: USER_AUTHORIZED,
-      info: { ...response },
+      info: { ...response }
     });
     return response;
   } catch (error) {
@@ -70,24 +70,22 @@ export function* loginFlow() {
   // Basically here we say "this saga is always listening for actions"
   while (true) {
     // And we're listening for `LOGIN_REQUEST` actions and destructuring its payload
-    const request = yield take(['LOGIN_REQUEST', 'TEST_ENTRY']);
+    const request = yield take(["LOGIN_REQUEST", "TEST_ENTRY"]);
 
     let username;
     let password;
-    debugger
     switch (request.type) {
-
-      case 'LOGIN_REQUEST':
+      case "LOGIN_REQUEST":
         username = yield select(makeSelectUsername());
         password = yield select(makeSelectPassword());
         break;
-      case 'TEST_ENTRY':
-        username = 'user1';
-        password = '123123';
+      case "TEST_ENTRY":
+        username = "test@test.ru";
+        password = "123456789";
         break;
       default:
-        username = '';
-        password = '';
+        username = "";
+        password = "";
         break;
     }
 
@@ -96,7 +94,7 @@ export function* loginFlow() {
     // returns the "winner", i.e. the one that finished first
     const winner = yield race({
       auth: call(authorize, { username, password, isRegistering: false }),
-      logout: take(LOGOUT),
+      logout: take(LOGOUT)
     });
 
     // If `authorize` was the winner...
@@ -104,12 +102,12 @@ export function* loginFlow() {
       // yield put(userAuthorized(username, password));
       yield put({
         type: CHANGE_FORM,
-        newFormState: { username: '', password: '' },
+        newFormState: { username: "", password: "" }
       });
       // ...we send Redux appropiate actions
       yield put({ type: SET_AUTH, newAuthState: true }); // User is logged in (authorized)
 
-      yield put(push('/Cabinet'));
+      yield put(push("/Cabinet"));
     }
   }
 }
@@ -129,7 +127,7 @@ export function* registerFlow() {
     const wasSuccessful = yield call(authorize, {
       username,
       password,
-      isRegistering: true,
+      isRegistering: true
     });
 
     // If we could register a user, we send the appropiate actions
@@ -137,9 +135,9 @@ export function* registerFlow() {
       yield put({ type: SET_AUTH, newAuthState: true }); // User is logged in (authorized) after being registered
       yield put({
         type: CHANGE_FORM,
-        newFormState: { username: '', password: '' },
+        newFormState: { username: "", password: "" }
       }); // Clear form
-      forwardTo('/Cabinet'); // Go to dashboard page
+      forwardTo("/Cabinet"); // Go to dashboard page
     }
   }
 }
